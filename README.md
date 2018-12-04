@@ -5,7 +5,7 @@ js的内置方法 bind 硬绑定
 
    js的修改this的还有call，apply 这里不说它们
    
-     bind 实现原理
+     bind 实现原理 (这里写的只不过分装是一个简单的bind实现)
      
        var objs={
           name:'jimes'
@@ -25,7 +25,7 @@ js的内置方法 bind 硬绑定
    
       咋们用js自己分装的bind() 试试？
       
-      注意：bind() 也可以实现？柯利华
+      注意：bind() 也可以实现？柯里化
 
        function fun1(age){
            console.log(this.name+":"+age) //jimes:89
