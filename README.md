@@ -1,5 +1,5 @@
 # js--bind
-js的内置方法 bind 硬绑定
+js的内置方法 bind 硬绑定  -->软绑定
 
 
 
@@ -45,7 +45,35 @@ js的内置方法 bind 硬绑定
         mybind("女")  
       
       
+      上面这些都是硬绑定？不是很灵活，看看下面咋们分装的软绑定
       
+      
+          var objs={
+             name:'jimes'
+         }
+
+          Function.prototype.sofBind=function(obj){
+              var _seft=this;
+              var curried=[].slice.call(arguments,1)
+              //return curried
+               var bound=function(){
+                   return _seft.apply(
+                       (!this||this===(window||global)?obj:this),
+                       curried.concat.apply(curried,arguments)
+                       )
+               }
+             curried.prototype=Object.create(_seft.prototype);  
+         return bound;
+          }
+          
+          
+         function test(age,sex){
+              console.log(this.name+":"+age+":"+sex) //jimes:12:男
+         }
+
+        var mYbind=test.sofBind(objs,12)
+          mYbind("男")
+
       
       
       
